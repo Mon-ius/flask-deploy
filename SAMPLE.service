@@ -1,0 +1,21 @@
+[Unit]
+Description={{domain}} Service daemon
+After=network.target
+
+[Service]
+Type=simple
+# Another Type option: forking
+
+User={{usr}}
+Environment="PYTHONHOME=/opt/anaconda3/envs/deploy/"
+Environment="PYTHONPATH=/opt/anaconda3/envs/deploy/lib"
+WorkingDirectory={{loc}}
+ExecStart=/opt/anaconda3/envs/deploy/bin/uwsgi {{domain}}.ini
+Restart=on-failure
+KillMode=mixed
+SendSIGHUP=yes
+TimeoutStopSec=1
+# Other Restart options: or always, on-abort, etc
+
+[Install]
+WantedBy=multi-user.target
