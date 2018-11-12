@@ -8,6 +8,8 @@ Assumed you meet these following conditions.
 - Linux kernel >= 3.13.
 - Conda environment.
 - Python 3.6+
+- uWSGI
+- Gevent
 - Ngnix
 - Docker
 - Domain.
