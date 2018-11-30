@@ -1,18 +1,42 @@
 # flask-deploy
 A simple scripts for deploying flask apps with Nginx, PostgreSQL , HTTPS and Systemd Daemon.
 
+## Assumptions
+
+- You're user : `www`
+- You have experience with Linux
+
 ## requirements
 
-Assumed you meet these following conditions.
+Assumed you have these following conditions.
 
-- Linux kernel >= 3.13.
-- Conda environment.
-- Python 3.6+
+
+
+### OutSide
+
+
+- server
+    - `example : centos`
+    - ip address : 
+
+- domain
+    - `example : www.example.com`
+
+- DNS
+    - redirect <domain> => <ip>
+
+
+### Software and enviroment
+
+- git
+- wget
+- curl
+- Nginx
+- docker-ce
+- Anaconda3
+- Python3.6+
 - uWSGI
-- Gevent
-- Ngnix
-- Docker
-- Domain.
+- Gevnet
 
 ## Start
 
@@ -48,3 +72,32 @@ Then you could manage it by:
 - sudo systemctl stop domain
 - sudo systemctl restart domain
 
+
+## Attention
+
+### Ubuntu 18.x
+
+- docker-ce install 
+`sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"`
+`sudo apt install docker-ce`
+
+
+## Options
+
+### Anaconda environment
+
+Suppose location : `/opt/anaconda3`
+
+- sudo chown -R www:www /opt/ && cd /opt
+- wget "https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh"
+- sudo chmod +x ./Anaconda3-5.3.1-Linux-x86_64.sh && ./Anaconda3-5.3.1-Linux-x86_64.sh
+- following the tips: `yes` - `/opt/anaconda3` - `yes`
+
+### Anaconda setup
+
+- conda create -n deploy python=3.6
+- conda activate deploy
+- conda install -c conda-forge gevent
+- conda install -c conda-forge uwsgi
