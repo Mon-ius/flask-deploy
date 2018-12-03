@@ -1,0 +1,4 @@
+docker run --name x.com -d -p 5432:5432 \
+-v ~/x.com:/var/lib/postgresql/data \
+-e POSTGRES_DB=x.com -e POSTGRES_USER=monius -e POSTGRES_PASSWORD='x.com' \
+postgres:latest

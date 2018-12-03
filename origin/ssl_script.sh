@@ -1,11 +1,11 @@
 export CF_Key={{KEY}}
 export CF_Email={{EMAIL}}
 
-apt install socat -y
-mkdir /etc/nginx/certs
-wget -O -  https://get.acme.sh | sh
+sudo apt install socat -y
 
-~/.acme.sh/acme.sh --force --issue -d "*.{{domain}}" -d "{{domain}}" --dns dns_cf \
+sudo wget -O -  https://get.acme.sh | sh
+
+sudo ~/.acme.sh/acme.sh --force --issue -d "*.{{domain}}" -d "{{domain}}" --dns dns_cf \
 --cert-file /etc/nginx/certs/site.crt \
 --key-file /etc/nginx/certs/site.key \
 --fullchain-file /etc/nginx/certs/fullchain.crt \
