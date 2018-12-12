@@ -1,20 +1,9 @@
+from scripts.config import *
 import getpass
 import subprocess
 import os
 import re
 
-
-## Configuration file
-uWSGI = "origin/uwsgi_config.ini"
-NGINX = "origin/nginx_config.conf"
-
-SSL = "origin/ssl_script.sh"
-SERVICE = "origin/systemd_script.service"
-DOCKER = "origin/docker_config.run"
-### May need to change
-NGINX_CONF1 = "/etc/nginx/sites-enabled/"
-NGINX_CONF2 = "/etc/nginx/sites-available/"
-SYSTEMD_CONF = "/etc/systemd/system/"
 
 def accept_warning(s):
     c = ''
@@ -41,8 +30,6 @@ def get_env():
             else:
                 print("You have no previlege!!!")
                 os._exit(0)
-
-
 
     return domain,usr,loc
 
@@ -214,8 +201,8 @@ if __name__ == '__main__':
     domain,usr,loc = get_env()
     
     config_files_gen(domain, usr, loc)
-    script_files_gen(domain, usr, loc)
-    script_files_run(domain, usr, loc)
+    # script_files_gen(domain, usr, loc)
+    # script_files_run(domain, usr, loc)
 
     
     # add_uwsgi(usr,loc)
