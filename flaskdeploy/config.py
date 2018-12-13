@@ -4,17 +4,17 @@ import os
 path_to_module = os.path.dirname(__file__)
 # Configurations
 
-uWSGI = os.path.join(path_to_module, "utils", "uwsgi_config.ini")
-NGINX = os.path.join(path_to_module, "utils", "nginx_config.conf")
-SSL = os.path.join(path_to_module, "utils", "ssl_script.sh")
-SERVICE = os.path.join(path_to_module, "utils", "systemd_script.service")
-DOCKER = os.path.join(path_to_module, "utils", "docker_config.run")
+uWSGI = os.path.join(path_to_module, "data", "uwsgi_config.ini")
+NGINX = os.path.join(path_to_module, "data", "nginx_config.conf")
+SSL = os.path.join(path_to_module, "data", "ssl_script.sh")
+SERVICE = os.path.join(path_to_module, "data", "systemd_script.service")
+DOCKER = os.path.join(path_to_module, "data", "docker_config.run")
 # uWSGI = "./"
-#  = "./utils/"
+#  = "./data/"
 
-#  = "./utils/"
-#  = "./utils/
-#  = "./utils/
+#  = "./data/"
+#  = "./data/
+#  = "./data/
 
 # May need to change
 NGINX_CONF1 = "/etc/nginx/sites-enabled/"

@@ -10,13 +10,11 @@ A simple scripts for deploying flask apps with Nginx, PostgreSQL , HTTPS and Sys
 
 Assumed you have these following conditions.
 
-
-
 ### OutSide
-
 
 - server
     - `example : centos`
+
     - ip address : 
 
 - domain
@@ -63,13 +61,17 @@ It will add the configuration file to NGINX for your project if you first run it
 ## Run FLASK Application as Systemd Daemon
 
 - ``` sudo mv ./domain.service /etc/systemd/system```
+
 - sudo systemctl enable domain
+
 - sudo systemctl start domain
 
 It will add the service file to Systemd and make your project run as system service if you first run it.
 
 Then you could manage it by:
+
 - sudo systemctl stop domain
+
 - sudo systemctl restart domain
 
 
@@ -78,11 +80,11 @@ Then you could manage it by:
 ### Ubuntu 18.x
 
 - docker-ce install 
+
 `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
 `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"`
 `sudo apt install docker-ce`
-
 
 ## Options
 

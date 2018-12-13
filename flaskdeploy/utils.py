@@ -1,7 +1,7 @@
 import re
 import click
 import os
-from .config import *
+from config import *
 
 
 def ssl_file_gen(domain,usr,loc,email,key):
@@ -15,7 +15,7 @@ def ssl_file_gen(domain,usr,loc,email,key):
             ssl_sh.write(res)
             ssl_sh.close()
         fh.close()
-        click.echo("-0- SSL script: {} create successfully".format(domain+"/"+domain+'.sh'))
+        click.echo("-4- SSL script: {} create successfully".format(domain+"/"+domain+'.sh'))
 
 
 def docker_file_gen(domain,usr,loc):
@@ -30,7 +30,7 @@ def docker_file_gen(domain,usr,loc):
             docker_run.close()
 
         fh.close()
-        click.echo("-1- Docker config script: {} create successfully".format(domain+"/"+domain+'.run'))
+        click.echo("-3- Docker config script: {} create successfully".format(domain+"/"+domain+'.run'))
 
 
 def uwsgi_file_gen(domain,usr,loc):
@@ -48,7 +48,7 @@ def uwsgi_file_gen(domain,usr,loc):
             uwsgi_ini.close()
     
         fh.close()
-        click.echo("-2- uwsgi config file: {} create successfully".format(domain+"/"+domain+'.ini'))
+        click.echo("-0- uwsgi config file: {} create successfully".format(domain+"/"+domain+'.ini'))
 
 #static
 def nginx_file_gen(domain,usr,loc):
@@ -63,7 +63,7 @@ def nginx_file_gen(domain,usr,loc):
             nginx_conf.close()
         fh.close()
 
-        click.echo("-3- Nginx config file: {} create successfully".format(domain+"/"+domain+'.conf'))
+        click.echo("-1- Nginx config file: {} create successfully".format(domain+"/"+domain+'.conf'))
 
 #static
 def service_file_gen(domain,usr,loc):
@@ -78,4 +78,42 @@ def service_file_gen(domain,usr,loc):
             confservice.write(res)
             confservice.close()
         fh.close()
-        click.echo("-4- Systemd service file : {} create successfully".format(domain+"/"+domain+'.service'))
+        click.echo("-2- Systemd service file : {} create successfully".format(domain+"/"+domain+'.service'))
+
+
+def script_files_gen(domain, usr, loc):
+    cmd = []
+    files = loc+"/"+domain
+    c = None
+    if os.path.exists(files+'.sh'):
+        c = "sudo mkdir /etc/nginx/certs"
+        c1 = "sudo "+files+'.sh'
+
+        cmd.append(c)
+        cmd.append(c1)
+
+    if os.path.exists(files+'.run'):
+        c = "sudo "+files+'.run'
+        cmd.append(c)
+
+    if os.path.exists(files+'.conf'):
+        c = "sudo cp "+files+'.conf ' + NGINX_CONF1
+        c1 = "sudo cp "+files+'.conf ' + NGINX_CONF2
+        c2 = "sudo nginx -s reload"
+        cmd.append(c)
+        cmd.append(c1)
+        cmd.append(c2)
+
+    if os.path.exists(files+'.service'):
+        c = "sudo cp "+files+'.service ' + SYSTEMD_CONF
+        c1 = "sudo systemctl enable "+domain+'.service'
+        c2 = "sudo systemctl start "+domain+'.service'
+        cmd.append(c)
+        cmd.append(c1)
+        cmd.append(c2)
+
+    with open(loc+'/start.sh', 'w') as file:
+        for c in cmd:
+            file.write(c+"\n")
+        file.close()
+    click.echo("-5- One click script file : {} create successfully".format(domain+"/"+'start.sh'))

@@ -1,6 +1,6 @@
 from ..config import *
 from ..validation import *
-from ..generation import *
+from ..utils import *
 
 import subprocess
 import getpass
@@ -28,6 +28,7 @@ def miss_tmp(email, key):
 @click.option('--key', help='Key,Apply ssl certification,CloudFlare.')
 @click.pass_context
 def cli(ctx, domain, email, key):
+    """Deploy the flask app right now."""
     global DOMAIN, USR, CUR_LOC
     usr = getpass.getuser()
     loc = os.path.join(os.getcwd(), domain)
@@ -67,7 +68,6 @@ def cli(ctx, domain, email, key):
     # print("email : ",)
     # print("key : ",)
 
+if __name__ == '__main__':
 
-# if __name__ == '__main__':
-
-#     hello()
+    cx()
