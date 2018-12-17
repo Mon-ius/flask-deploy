@@ -8,14 +8,16 @@ import os
 
 import click
 
-
-@click.command()
+@click.command(context_settings=dict(
+    allow_extra_args=True
+))
 @click.option('--email', prompt='Your email', help='Email,Apply ssl certification,CloudFlare.',
               callback=validate_email)
 @click.option('--key', prompt='Your secret key', help='Secret Key,Apply ssl certification,CloudFlare.')
-def miss_tmp(email, key):
+@click.pass_context
+def miss_tmp(ctx,email, key):
     ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
-    return
+    raise JumpOutFuckingClick
 
 
 @click.command()
@@ -26,8 +28,9 @@ def miss_tmp(email, key):
               callback=validate_email
               )
 @click.option('--key', help='Key,Apply ssl certification,CloudFlare.')
+@click.option('--docker', help='Confirm having database or not.')
 @click.pass_context
-def cli(ctx, domain, email, key):
+def cli(ctx, domain, email, key,docker):
     """Deploy the flask app right now."""
     global DOMAIN, USR, CUR_LOC
     usr = getpass.getuser()
@@ -48,26 +51,17 @@ def cli(ctx, domain, email, key):
     uwsgi_file_gen(DOMAIN, USR, CUR_LOC)
     nginx_file_gen(DOMAIN, USR, CUR_LOC)
     service_file_gen(DOMAIN, USR, CUR_LOC)
-
-    if not click.confirm('Do you have database already?'):
-        docker_file_gen(DOMAIN, USR, CUR_LOC)
+    
+    if not docker:
+        if not click.confirm('Do you have database already?'):
+            docker_file_gen(DOMAIN, USR, CUR_LOC)
     if not email or not key:
         if not click.confirm('Do you have SSL certification?'):
-            miss_tmp()
+            try:
+                miss_tmp()
+            except JumpOutFuckingClick:
+                pass
     else:
         ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
 
-    # click.echo(DOMAIN)
-    # click.echo(USR)
-    # click.echo(CUR_LOC)
-    # click.echo(DOMAIN,USR,CUR_LOC)
-    # if not click.confirm('Do you have database already?'):
-    #     world()
-
-    # print("domain : ",domain)
-    # print("email : ",)
-    # print("key : ",)
-
-if __name__ == '__main__':
-
-    cx()
+    script_files_gen(DOMAIN, USR, CUR_LOC)

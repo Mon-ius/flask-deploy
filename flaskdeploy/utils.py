@@ -1,8 +1,11 @@
 import re
 import click
 import os
-from config import *
+from .config import *
 
+class JumpOutFuckingClick(Exception):
+   """Just to break out the unkown loop"""
+   pass
 
 def ssl_file_gen(domain,usr,loc,email,key):
     with open(SSL, "r") as fh:

@@ -11,14 +11,21 @@ import click
 def cx():
     """A quick deploy script for productive flask app."""
 
-@cx.command()
+
+@click.command(context_settings=dict(
+    allow_extra_args=True
+))
 @click.option('--email', prompt='Your email', help='Email,Apply ssl certification,CloudFlare.',
               callback=validate_email)
 @click.option('--key', prompt='Your secret key', help='Secret Key,Apply ssl certification,CloudFlare.')
-def miss_tmp(email, key):
+@click.pass_context
+def miss_tmp(ctx,email, key):
     ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
+    raise JumpOutFuckingClick
 
-@cx.command('deploy', short_help='deploy the app')
+
+
+@click.command()
 @click.option('--domain', prompt='Your domain', help='The domain to be configured.',
               callback=validate_domain
               )
@@ -49,19 +56,23 @@ def deploy(ctx, domain, email, key,docker):
     uwsgi_file_gen(DOMAIN, USR, CUR_LOC)
     nginx_file_gen(DOMAIN, USR, CUR_LOC)
     service_file_gen(DOMAIN, USR, CUR_LOC)
-
+    
     if not docker:
         if not click.confirm('Do you have database already?'):
             docker_file_gen(DOMAIN, USR, CUR_LOC)
     if not email or not key:
         if not click.confirm('Do you have SSL certification?'):
-            miss_tmp()
+            try:
+                miss_tmp()
+            except JumpOutFuckingClick:
+                click.echo("2333")
     else:
         ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
 
     script_files_gen(DOMAIN, USR, CUR_LOC)
 
-@cx.command('gen', short_help='gen the config')
+
+@click.command()
 @click.option('--domain', prompt='Your domain', help='The domain to be configured.',
               callback=validate_domain
               )
@@ -72,7 +83,7 @@ def deploy(ctx, domain, email, key,docker):
 @click.option('--docker', help='Confirm having database or not.')
 @click.pass_context
 def gen(ctx, domain, email, key,docker):
-    """Generates the necessary config.(Just generating)"""
+    """Necessary config.(Just generating)"""
     global DOMAIN, USR, CUR_LOC
     usr = getpass.getuser()
     loc = os.path.join(os.getcwd(), domain)
@@ -98,17 +109,54 @@ def gen(ctx, domain, email, key,docker):
             docker_file_gen(DOMAIN, USR, CUR_LOC)
     if not email or not key:
         if not click.confirm('Do you have SSL certification?'):
-            miss_tmp()
+            try:
+                miss_tmp()
+            except JumpOutFuckingClick:
+                click.echo("2333")
     else:
         ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
 
+
+
 # @cx.command('gen', short_help='gen the config')
 # def gen():
-#     """Generates the necessary config.(Just generating)"""
+    # """Generates the necessary config.(Just generating)"""
 
 # @cx.command('deploy', short_help='deploy the app')
 # def deploy():
 #     """Deploy the flask app right now."""
 
+
+
+
+cli = click.Group()
+
+
+@click.command(short_help='test',context_settings=dict(
+    allow_extra_args=True
+))
+@click.option('--count', prompt='count')
+def test(count):
+    click.echo('Count: {}'.format(count))
+    raise JumpOutFuckingClick
+
+
+@click.command(short_help='dist')
+@click.option('--count')
+@click.pass_context
+def dist(ctx, count):
+    if not count:
+        try:
+            test()
+        except JumpOutFuckingClick:
+            click.echo("2333")
+
+# cli.add_command(dist, 'dist')
+# cli.add_command(test, 'test')
+
+cx.add_command(gen, 'gen')
+cx.add_command(deploy, 'deploy')
+
 if __name__ == '__main__':
+    # cli()
     cx()

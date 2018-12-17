@@ -1,12 +1,12 @@
 
 import setuptools
 
-with open('README.md', 'r', 'utf-8') as f:
+with open('README.md', 'r') as f:
     readme = f.read()
 
 setuptools.setup(
     name='flask-deploy',
-    version='0.1',      
+    version='0.2.1',      
     description='A quick deploy script for productive flask app',
     url='https://github.com/Mon-ius/flask-deploy',
     author='Mon-ius',
@@ -21,9 +21,8 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     entry_points={
     'console_scripts': [
-        'flask-deploy = flaskdeploy.scripts.deploy:info',
-        'fd gen = flaskdeploy.scripts.generation:cli',
-        'fd deploy = flaskdeploy.scripts.deploy:cli',
+        'flask-deploy =flaskdeploy.scripts.core:cli',
+        'fd = flaskdeploy.scripts.core:cli',
     ],
     },
     zip_safe=False,

@@ -1,6 +1,19 @@
 # flask-deploy
 A simple scripts for deploying flask apps with Nginx, PostgreSQL , HTTPS and Systemd Daemon.
 
+## Install
+
+```
+pip install flask-deploy
+```
+
+
+## Usage
+
+change directory to your flask project
+
+`flask-deploy` **or** `fd`
+
 ## Assumptions
 
 - You're user : `www`
