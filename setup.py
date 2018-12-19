@@ -27,10 +27,10 @@ setuptools.setup(
     },
     zip_safe=False,
     classifiers=[
-        'Development Status :: 1 - Production/0.2',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Natural Language :: English',
-        'License :: OSI Approved :: MIT',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
