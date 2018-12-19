@@ -27,7 +27,7 @@ setuptools.setup(
     },
     zip_safe=False,
     classifiers=[
-        'Development Status :: 1 - Production/Beta',
+        'Development Status :: 1 - Production/0.2',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT',
