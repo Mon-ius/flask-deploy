@@ -1,18 +1,37 @@
 # flask-deploy
+
 A simple scripts for deploying flask apps with Nginx, PostgreSQL , HTTPS and Systemd Daemon.
 
 ## Install
 
-```
-pip install flask-deploy
-```
-
+`pip install flask-deploy`
 
 ## Usage
 
 change directory to your flask project
 
 `flask-deploy` **or** `fd`
+
+## Features
+
+### Server support
+
+- NGINX
+- Caddy(Future)
+
+### MiddleWare support
+
+- uSWGI
+- gevent
+- gunicorn(Future)
+
+### Docker support
+
+- PostgreSQL DataBase
+
+### System Service
+
+- Systemd(Linux)
 
 ## Assumptions
 

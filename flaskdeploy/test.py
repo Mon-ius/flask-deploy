@@ -11,7 +11,6 @@ import click
 def cx():
     """A quick deploy script for productive flask app."""
 
-
 @click.command(context_settings=dict(
     allow_extra_args=True
 ))
@@ -118,20 +117,39 @@ def gen(ctx, domain, email, key,docker):
 
 
 
-# @cx.command('gen', short_help='gen the config')
-# def gen():
-    # """Generates the necessary config.(Just generating)"""
+@click.command()
+@click.option('--domain', prompt='Your domain', help='The domain to be configured.',
+              callback=validate_domain)
+@click.pass_context
+def run(ctx, domain):
+    """Run generated script: startup.sh"""
+    global DOMAIN, USR, CUR_LOC
+    usr = getpass.getuser()
+    loc = os.path.join(os.getcwd(), domain)
+    DOMAIN, USR, CUR_LOC = domain, usr, loc
 
-# @cx.command('deploy', short_help='deploy the app')
-# def deploy():
-#     """Deploy the flask app right now."""
-
-
-
+    
+    if not os.path.exists(CUR_LOC):
+        click.echo("No folder for domain({}) at user({}) environment, please try fd/flask-deploy generate to init.".format(domain,usr))
+        return
+    else:
+        try:
+            current_files = os.listdir(CUR_LOC)
+            if "start.sh" in current_files:
+                click.echo("On load")
+                return
+            else:
+                click.echo("No file for domain({}) at user({}) environment, please try fd/flask-deploy generate to init.".format(CUR_LOC,usr))
+                return
+        except:
+            if click.confirm("You have no privilege of current location Would you like to own it?"):
+                subprocess.call(['sudo', 'chown', '-R', usr+":"+usr, './'])
+                os.makedirs(loc)
+            else:
+                click.echo("You have no previlege!!!")
+                return
 
 cli = click.Group()
-
-
 @click.command(short_help='test',context_settings=dict(
     allow_extra_args=True
 ))
@@ -156,6 +174,7 @@ def dist(ctx, count):
 
 cx.add_command(gen, 'gen')
 cx.add_command(deploy, 'deploy')
+cx.add_command(run, 'run')
 
 if __name__ == '__main__':
     # cli()
