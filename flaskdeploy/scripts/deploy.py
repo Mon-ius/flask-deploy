@@ -14,8 +14,9 @@ import click
 @click.option('--email', prompt='Your email', help='Email,Apply ssl certification,CloudFlare.',
               callback=validate_email)
 @click.option('--key', prompt='Your secret key', help='Secret Key,Apply ssl certification,CloudFlare.')
+@click.option('--domain')
 @click.pass_context
-def miss_tmp(ctx,email, key):
+def miss_tmp(ctx,email, key,domain):
     ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
     raise JumpOutFuckingClick
 
@@ -65,3 +66,4 @@ def cli(ctx, domain, email, key,docker):
         ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
 
     script_files_gen(DOMAIN, USR, CUR_LOC)
+    script_files_run(DOMAIN, USR, CUR_LOC)

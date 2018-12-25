@@ -17,12 +17,11 @@ def cx():
 @click.option('--email', prompt='Your email', help='Email,Apply ssl certification,CloudFlare.',
               callback=validate_email)
 @click.option('--key', prompt='Your secret key', help='Secret Key,Apply ssl certification,CloudFlare.')
+@click.option('--domain')
 @click.pass_context
-def miss_tmp(ctx,email, key):
+def miss_tmp(ctx,email, key,domain):
     ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
     raise JumpOutFuckingClick
-
-
 
 @click.command()
 @click.option('--domain', prompt='Your domain', help='The domain to be configured.',
@@ -64,7 +63,7 @@ def deploy(ctx, domain, email, key,docker):
             try:
                 miss_tmp()
             except JumpOutFuckingClick:
-                click.echo("2333")
+                pass
     else:
         ssl_file_gen(DOMAIN, USR, CUR_LOC, email, key)
 
