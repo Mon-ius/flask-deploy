@@ -21,20 +21,20 @@ def cli(ctx, domain):
 
     
     if not os.path.exists(CUR_LOC):
-        click.echo("No folder for domain({}) at user({}) environment, please try fd/flask-deploy generate to init.".format(domain,usr))
+        click.echo("No folder for domain({}) at user({}) environment, please try fd/flask-deploy generate to init.".format(DOMAIN,USR))
         return
     else:
         try:
             current_files = os.listdir(CUR_LOC)
             if "start.sh" in current_files:
-                click.echo("On load")
+                script_files_run(DOMAIN, USR, CUR_LOC)
                 return
             else:
-                click.echo("No file for domain({}) at user({}) environment, please try fd/flask-deploy generate to init.".format(CUR_LOC,usr))
+                click.echo("No file for domain({}) at user({}) environment, please try fd/flask-deploy generate to init.".format(CUR_LOC,USR))
                 return
         except:
             if click.confirm("You have no privilege of current location Would you like to own it?"):
-                subprocess.call(['sudo', 'chown', '-R', usr+":"+usr, './'])
+                subprocess.call(['sudo', 'chown', '-R', USR+":"+USR, './'])
                 os.makedirs(loc)
             else:
                 click.echo("You have no previlege!!!")
