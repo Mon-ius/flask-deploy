@@ -4,13 +4,28 @@ A simple scripts for deploying flask apps with Nginx, PostgreSQL , HTTPS and Sys
 
 ## Install
 
+### Using pip 
+
 `pip install flask-deploy`
 
 ## Usage
 
+### Deploy on current directory
+
 change directory to your flask project
 
 `flask-deploy` **or** `fd`
+
+### Principle and Variable
+
+- `usr` : current user on Linux
+  - root 
+- `domain` : domain name of the site
+  - xx.flask.org
+- `env` : root location of the project
+  - exampleProject/ 
+- `loc` : location of directory storing the config files
+  - exampleProject/xx.flask.org/
 
 ## Features
 

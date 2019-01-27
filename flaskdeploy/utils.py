@@ -43,7 +43,7 @@ def uwsgi_file_gen(domain,usr,loc):
     with open(uWSGI, 'r') as fh:
         fds = fh.read()
 
-        fce = re.sub(r'{{env}}',env+"/"+domain,fds)
+        fce = re.sub(r'{{env}}',env,fds)
         fcu = re.sub(r'{{usr}}',usr,fce)
         res = re.sub(r'{{loc}}',loc,fcu)
 
