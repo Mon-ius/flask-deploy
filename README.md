@@ -29,6 +29,11 @@ change directory to your flask project
 
 ## Features
 
+### DNS support
+
+- cloudflare
+- aliyun
+
 ### Server support
 
 - NGINX
@@ -150,6 +155,14 @@ Suppose location : `/opt/anaconda3`
 - conda activate deploy
 - conda install -c conda-forge gevent
 - conda install -c conda-forge uwsgi
+
+## Update
+
+- Version 0.3  Feb 17,2019
+    - add new dns ssl generation: aliyun
+    - add separate `test` folder
+    - add number validation
+    - change logic -> <domain,dns_options,docker> <OP1,OP2>
 
 ## MIT License
 

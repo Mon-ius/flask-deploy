@@ -1,5 +1,5 @@
 [Unit]
-Description={{domain}} Service daemon
+Description={{DOMAIN}} Service daemon
 After=network.target
 
 [Service]
@@ -10,7 +10,7 @@ User={{usr}}
 Environment="PYTHONHOME=/opt/anaconda3/envs/deploy/"
 Environment="PYTHONPATH=/opt/anaconda3/envs/deploy/lib"
 WorkingDirectory={{loc}}
-ExecStart=/opt/anaconda3/envs/deploy/bin/uwsgi {{domain}}.ini
+ExecStart=/opt/anaconda3/envs/deploy/bin/uwsgi {{DOMAIN}}.ini
 Restart=on-failure
 KillMode=mixed
 SendSIGHUP=yes
