@@ -6,7 +6,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='flask-deploy',
-    version='0.2.2',      
+    version='0.3.0',      
     description='A quick deploy script for productive flask app',
     url='https://github.com/Mon-ius/flask-deploy',
     author='Mon-ius',
