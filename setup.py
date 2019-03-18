@@ -6,7 +6,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='flask-deploy',
-    version='0.3.0',      
+    version='0.3.1',      
     description='A quick deploy script for productive flask app',
     url='https://github.com/Mon-ius/flask-deploy',
     author='Mon-ius',
@@ -16,6 +16,9 @@ setuptools.setup(
     package_data={
         'flaskdeploy': ['data/*']
     },
+    install_requires=[
+        'click',
+    ],
     license='MIT',
     long_description=readme,
     long_description_content_type='text/markdown',
