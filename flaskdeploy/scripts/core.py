@@ -1,8 +1,9 @@
+import click
+
 from .deploy import cli as deploy
 from .generation import cli as generation
 from .run import cli as run
 
-import click
 
 @click.group()
 def cli():

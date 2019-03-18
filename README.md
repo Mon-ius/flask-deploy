@@ -171,6 +171,8 @@ Suppose location : `/opt/anaconda3`
     - bug fixed
 - Version 0.3.4  March 18,2019
     - deploy bug fixed
+- Version 0.3.5  March 18,2019
+    - run bug fixed
 
 ## MIT License
 

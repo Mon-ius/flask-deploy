@@ -1,14 +1,16 @@
+import getpass
+import os
+import subprocess
+
+import click
+
 from ..config import *
-from ..validation import *
 from ..utils import *
+from ..validation import *
 
 # from .dns import *
 
-import subprocess
-import getpass
-import os
 
-import click
 
 
 # @click.command(context_settings=dict(
@@ -75,7 +77,7 @@ def op_cf(ctx,cf_email,cf_key):
     ssl_multi_gen(DOMAIN, USR, CUR_LOC, op_1,op_2,dns_op)
 
     raise JumpOutFuckingClick2
-    
+
 @click.command()
 @click.option('--domain', prompt='Your domain', help='The domain to be configured.',
               callback=validate_domain
@@ -129,4 +131,3 @@ def cli(ctx, domain, dns_option,docker):
             except JumpOutFuckingClick2:
                 pass
     script_files_gen(DOMAIN, USR, CUR_LOC)
-

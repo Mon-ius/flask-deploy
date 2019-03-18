@@ -1,14 +1,16 @@
+import getpass
+import os
+import subprocess
+
+import click
+
 from ..config import *
-from ..validation import *
 from ..utils import *
+from ..validation import *
 
 # from .dns import *
 
-import subprocess
-import getpass
-import os
 
-import click
 
 # @click.command(context_settings=dict(
 #     allow_extra_args=True
@@ -132,4 +134,3 @@ def cli(ctx, domain, dns_option,docker):
                 
     script_files_gen(DOMAIN, USR, CUR_LOC)
     script_files_run(DOMAIN, USR, CUR_LOC)
-

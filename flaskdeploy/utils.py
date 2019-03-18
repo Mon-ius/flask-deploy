@@ -1,7 +1,12 @@
-import re
-import click
+import getpass
 import os
+import re
+import subprocess
+
+import click
+
 from .config import *
+
 
 class JumpOutFuckingClick(Exception):
    """Just to break out the unkown loop"""
@@ -107,7 +112,7 @@ def script_files_gen(domain, usr, loc):
     files = loc+"/"+domain
     c = None
     if os.path.exists(files+'.sh'):
-        c = "sudo mkdir /etc/nginx/certs"
+        c = "sudo mkdir -p /etc/nginx/certs"
         c1 = "sudo "+files+'.sh'
 
         cmd.append(c)
@@ -138,3 +143,6 @@ def script_files_gen(domain, usr, loc):
             file.write(c+"\n")
         file.close()
     click.echo("-5- One click script file : {} create successfully".format(domain+"/"+'start.sh'))
+
+def script_files_run(domain, usr, loc):
+    subprocess.call(['sudo', loc+'/start.sh'])

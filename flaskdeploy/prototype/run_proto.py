@@ -1,8 +1,9 @@
-from scripts.config import *
 import getpass
-import subprocess
 import os
 import re
+import subprocess
+
+from scripts.config import *
 
 
 def accept_warning(s):

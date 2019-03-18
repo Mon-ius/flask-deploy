@@ -1,12 +1,13 @@
-from ..config import *
-from ..validation import *
-from ..utils import *
-
-import subprocess
 import getpass
 import os
+import subprocess
 
 import click
+
+from ..config import *
+from ..utils import *
+from ..validation import *
+
 
 @click.command()
 @click.option('--domain', prompt='Your domain', help='The domain to be configured.',

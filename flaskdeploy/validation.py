@@ -1,5 +1,7 @@
 import re
+
 import click
+
 
 def validate_email(ctx, param, value):
     if not value:
