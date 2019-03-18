@@ -1,6 +1,6 @@
-from config import *
-from validation import *
-from utils import *
+from ..config import *
+from ..validation import *
+from ..utils import *
 
 import subprocess
 import getpass
