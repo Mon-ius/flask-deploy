@@ -163,16 +163,10 @@ Suppose location : `/opt/anaconda3`
     - add separate `test` folder
     - add number validation
     - change logic -> <domain,dns_options,docker> <OP1,OP2>
-- Version 0.3.1  March 18,2019
-    - bug fixed
-- Version 0.3.2  March 18,2019
-    - bug fixed
-- Version 0.3.3  March 18,2019
-    - bug fixed
-- Version 0.3.4  March 18,2019
-    - deploy bug fixed
-- Version 0.3.5  March 18,2019
-    - run bug fixed
+
+- Version 0.4  March 18,2019
+    - keep environment variable use `sudo -E`
+    - keep python global variable use duplicate code
 
 ## MIT License
 
