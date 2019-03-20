@@ -113,7 +113,7 @@ def script_files_gen(domain, usr, loc):
     c = None
     if os.path.exists(files+'.sh'):
         c = "sudo mkdir -p /etc/nginx/certs"
-        c1 = "sudo "+files+'.sh'
+        c1 = "sudo /bin/bash"+files+'.sh'
 
         cmd.append(c)
         cmd.append(c1)
@@ -145,4 +145,4 @@ def script_files_gen(domain, usr, loc):
     click.echo("-5- One click script file : {} create successfully".format(domain+"/"+'start.sh'))
 
 def script_files_run(domain, usr, loc):
-    subprocess.call(['sudo', loc+'/start.sh'])
+    subprocess.call(['sudo', '/bin/bash',loc+'/start.sh'])
