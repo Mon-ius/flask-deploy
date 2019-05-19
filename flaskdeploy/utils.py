@@ -113,7 +113,7 @@ def script_files_gen(domain, usr, loc):
     c = None
     if os.path.exists(files+'.sh'):
         c = "sudo mkdir -p /etc/nginx/certs"
-        c1 = "sudo /bin/bash"+files+'.sh'
+        c1 = "sudo /bin/bash "+files+'.sh'
 
         cmd.append(c)
         cmd.append(c1)

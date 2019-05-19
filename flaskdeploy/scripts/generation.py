@@ -9,10 +9,6 @@ from ..utils import *
 from ..validation import *
 
 # from .dns import *
-
-
-
-
 # @click.command(context_settings=dict(
 #     allow_extra_args=True
 # ))
